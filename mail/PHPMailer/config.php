@@ -1,29 +1,31 @@
 <?php
 
 // Mail address config
-$receiver = "to@yourdomain.com";
-$sender = "from@yourdomain.com";
+$config['receiver'] = "to@yourdomain.com";
+$config['sender'] = "from@yourdomain.com";
 
 // Optional
-$receiverName = "Receiver";
-$senderName = "Sender";
+$config['receiverName'] = "Receiver";
+$config['senderName'] = "Sender";
 
 function send($phpMailer)
 {
+    global $config;
+    
     //From email address and name
-    $mail->From = $sender;
-    $mail->FromName = $senderName;
+    $phpMailer->From = $config['sender'] ;
+    $phpMailer->FromName = $config['senderName'] ;
 
     //To address and name
-    $mail->addAddress($receiver, $receiverName);
+    $phpMailer->addAddress($config['receiver'] , $config['receiverName']);
 
-    $mail->isHTML(true);
-    $mail->Subject = "Subject Text";
-    $mail->Body = "<i>Mail body in HTML</i>";
-    $mail->AltBody = "This is the plain text version of the email content";
+    $phpMailer->isHTML(true);
+    $phpMailer->Subject = "Subject Text";
+    $phpMailer->Body = "<i>Mail body in HTML</i>";
+    $phpMailer->AltBody = "This is the plain text version of the email content";
 
-    if (!$mail->send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+    if (!$phpMailer->send()) {
+        echo "Mailer Error: " . $phpMailer->ErrorInfo;
     } else {
         echo "Message has been sent successfully";
     }                 
