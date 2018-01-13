@@ -3,12 +3,12 @@
 require_once "config.php";
 
 /**
- * Mail server connection by TLS
+ * Mail server connection by SSL
  */
 $phpMailer->Port = 465;
 $phpMailer->SMTPSecure = "ssl";
-// $phpMailer->SMTPAutoTLS = true;
-// Options for TLS
+// $phpMailer->SMTPAutoTLS = false;
+// Options for SSL
 $phpMailer->SMTPOptions = [
     'ssl' => [
         'verify_peer' => false,
