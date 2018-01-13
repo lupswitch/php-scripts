@@ -1,27 +1,12 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require_once "vendor/autoload.php";
 require_once "config.php";
 
-//PHPMailer Object
-$mail = new PHPMailer;
-
-$mail->IsSMTP();
-$mail->SMTPDebug = 2;
-
 /**
- * Mail server connection
+ * Mail server connection by TLS
  */
-$mail->Host = "";
-// SMTP 25 without secure connection
-$mail->Port = 25;
-$mail->SMTPSecure = false;
-$mail->SMTPAutoTLS = false;
-// Auth
-$mail->SMTPAuth = true;
-$mail->Username = "";
-$mail->Password = "";
+$phpMailer->Port = 25;
+$phpMailer->SMTPSecure = false;
+$phpMailer->SMTPAutoTLS = false;
 
-return send($mail);
+return send($phpMailer);
